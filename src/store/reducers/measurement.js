@@ -1,20 +1,26 @@
 const initialState = {
-  multipleMeasurements: []
+  multipleMeasurements: [],
 };
 
 const measurement = (state = initialState, action) => {
-  switch(action.type) {
+  const { multipleMeasurements } = action;
+  switch (action.type) {
     case 'MULTIPLE_MEASUREMENTS_RECEIVED':
-      const { multipleMeasurements } = action;
       return {
-        multipleMeasurements
+        multipleMeasurements,
       };
     case 'NEW_MEASUREMENTS_RECEIVED':
-      if (state.multipleMeasurements.hasOwnProperty("multipleMeasurements")) {
-        for (let i = 0; i < Object.keys(state.multipleMeasurements.multipleMeasurements).length; i++) {
-          if ( state.multipleMeasurements.multipleMeasurements[i].metric === action.newMeasurementData.newMeasurement.metric ) {
-            state.multipleMeasurements.multipleMeasurements[i].measurements.push(action.newMeasurementData.newMeasurement);
-            state.multipleMeasurements.multipleMeasurements[i].measurements.shift()
+      if (Object.prototype.hasOwnProperty.call(state.multipleMeasurements, 'multipleMeasurements')) {
+        for (let i = 0; i < Object.keys(state.multipleMeasurements.multipleMeasurements).length;
+          i += 1) {
+          if (
+            state.multipleMeasurements.multipleMeasurements[i].metric
+            === action.newMeasurementData.newMeasurement.metric
+          ) {
+            state.multipleMeasurements.multipleMeasurements[i].measurements.push(
+              action.newMeasurementData.newMeasurement,
+            );
+            state.multipleMeasurements.multipleMeasurements[i].measurements.shift();
           }
         }
       }
@@ -22,12 +28,12 @@ const measurement = (state = initialState, action) => {
     case 'MULTIPLE_MEASUREMENTS_ERROR':
       return {
         ...state,
-        error: action.error
+        error: action.error,
       };
     case 'NEW_MEASUREMENTS_ERROR':
       return {
         ...state,
-        error: action.error
+        error: action.error,
       };
     default:
       return state;
