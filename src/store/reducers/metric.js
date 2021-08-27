@@ -1,12 +1,12 @@
 const initialState = {
-  metrics: [],
+  getMetrics: [],
 };
 
 const metric = (state = initialState, action) => {
-  const { metrics } = action;
+  const { getMetrics } = action;
   switch (action.type) {
     case 'METRIC_DATA_RECEIVED':
-      return { metrics };
+      return { getMetrics };
     case 'METRIC_DATA_ERROR':
       return {
         ...state,

@@ -1,26 +1,27 @@
 const initialState = {
-  multipleMeasurements: [],
+  getMultipleMeasurements: [],
 };
 
 const measurement = (state = initialState, action) => {
-  const { multipleMeasurements } = action;
+  const { getMultipleMeasurements } = action;
   switch (action.type) {
     case 'MULTIPLE_MEASUREMENTS_RECEIVED':
       return {
-        multipleMeasurements,
+        getMultipleMeasurements,
       };
     case 'NEW_MEASUREMENTS_RECEIVED':
-      if (Object.prototype.hasOwnProperty.call(state.multipleMeasurements, 'multipleMeasurements')) {
-        for (let i = 0; i < Object.keys(state.multipleMeasurements.multipleMeasurements).length;
+      if (Object.prototype.hasOwnProperty.call(state.getMultipleMeasurements, 'getMultipleMeasurements')) {
+        for (let i = 0; i
+          < Object.keys(state.getMultipleMeasurements.getMultipleMeasurements).length;
           i += 1) {
           if (
-            state.multipleMeasurements.multipleMeasurements[i].metric
+            state.getMultipleMeasurements.getMultipleMeasurements[i].metric
             === action.newMeasurementData.newMeasurement.metric
           ) {
-            state.multipleMeasurements.multipleMeasurements[i].measurements.push(
+            state.getMultipleMeasurements.getMultipleMeasurements[i].measurements.push(
               action.newMeasurementData.newMeasurement,
             );
-            state.multipleMeasurements.multipleMeasurements[i].measurements.shift();
+            state.getMultipleMeasurements.getMultipleMeasurements[i].measurements.shift();
           }
         }
       }

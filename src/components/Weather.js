@@ -15,10 +15,11 @@ query($latLong: WeatherQuery!) {
 }
 `;
 
-const getWeather = state => {
+const getWeather = (state) => {
   const { temperatureinFahrenheit, description, locationName } = state.weather;
+  const temperatureinFahren = Math.round(temperatureinFahrenheit);
   return {
-    temperatureinFahrenheit,
+    temperatureinFahren,
     description,
     locationName,
   };
@@ -32,7 +33,7 @@ const Weather = () => {
   };
 
   const dispatch = useDispatch();
-  const { temperatureinFahrenheit, description, locationName } = useSelector(
+  const { temperatureinFahren, description, locationName } = useSelector(
     getWeather,
   );
 
@@ -50,16 +51,21 @@ const Weather = () => {
       return;
     }
 
-    if (!data) return;
+    if (!data) {
+      return;
+    }
+
     const { getWeatherForLocation } = data;
     dispatch({ type: 'WEATHER_DATA_RECEIVED', getWeatherForLocation });
   }, [dispatch, data, error]);
 
-  if (fetching) return <LinearProgress />;
+  if (fetching) {
+    return <LinearProgress />;
+  }
 
   return (
     <Chip
-      label={`Weather in ${locationName}: ${description} and ${temperatureinFahrenheit}°`}
+      label={`Weather in ${locationName}: ${description} and ${temperatureinFahren}°`}
     />
   );
 };
