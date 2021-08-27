@@ -7,6 +7,7 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Charts from './Charts';
 import MeasurementBox from './MeasurementBox';
+import 'semantic-ui-css/semantic.min.css';
 
 const currentTime = new Date().valueOf();
 const queryMetric = `
@@ -166,8 +167,9 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div style={{ textAlign: 'right', margin: '20px' }}>
+      <div style={{ fontSize: '10px' }}>
         <FormControlLabel
+          style={{ margin: '5px' }}
           control={
             <Switch   // eslint-disable-line
               checked={state.switch}
@@ -182,16 +184,16 @@ const Dashboard = () => {
 
       <Container>
         <Dropdown
-          placeholder="Select..."
           fluid
           multiple
           selection
           options={options}
           onChange={handleSelectionChange}
+          placeholder="Select Metrics"
         />
       </Container>
 
-      <div style={{ margin: '30px' }}>
+      <div>
         <Charts command={state} />
       </div>
       <div>

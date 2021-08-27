@@ -6,8 +6,8 @@ const style = {
   height: 'auto',
   backgroundColor: 'white',
   border: '2px solid #96C8DA',
-  width: '170px',
-  borderRadius: '10px',
+  width: '200px',
+  borderRadius: '20px',
 };
 
 const Detail = props => {

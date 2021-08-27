@@ -65,9 +65,12 @@ const Chart = props => {
     setState({ ...state, [name]: e });
   };
 
-  const hideDetails = name => e =>{ // eslint-disable-line
+  const hideDetails = name => e => { // eslint-disable-line
     setState({ ...state, [name]: [] });
   };
+
+  let colorIndex = 0;
+  const colors = ['red', 'green', 'blue', 'yellow', 'black', 'purple'];
 
   return (
     <div>
@@ -78,12 +81,6 @@ const Chart = props => {
           data={dataList}
           onMouseMove={showDetails('details')}
           onMouseLeave={hideDetails('details')}
-          margin={{
-            top: 15,
-            right: 15,
-            left: 15,
-            bottom: 15,
-          }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
@@ -94,20 +91,21 @@ const Chart = props => {
           <YAxis
             domain={['auto', 'auto']}
             scale='linear'
-            tickCount={20}
+            tickCount={15}
           />
           <Legend />
 
           {props.command.value // eslint-disable-line
             ? props.command.value.map(data => { //eslint-disable-line
               return (
-                <Line
+                <Line //eslint-disable-line
                   type="monotone"
                   key={`${data}`}
                   dataKey={`${data}`}
                   activeDot={{ r: 8 }}
                   dot={false}
                   isAnimationActive={false}
+                  stroke={colors[colorIndex++]} //eslint-disable-line
                 />
               );
             })

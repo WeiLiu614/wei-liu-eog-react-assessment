@@ -28,7 +28,7 @@ const MeasurementBox = props => {
       <Grid columns="equal" divided>
         {list
           ? list.map(measurement => (
-            <Grid.Column key={measurement.metric} style={{ margin: '20px' }}>
+            <Grid.Column key={measurement.metric}>
               <Segment>
                 {measurement.metric} : <h2>{measurement.value}</h2><p>{measurement.unit}</p>
               </Segment>
